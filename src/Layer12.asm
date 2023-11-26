@@ -41,9 +41,13 @@ Print:
 .loop: ld a, (hl)                                       ; Read char of text,
     inc hl                                              ; and move to next text address.
     or a                                                ; Shorter than doing CP 0
-    jr z, Freeze                                        ; If the char was 0, then just continue,
+    jr z, .exit                                         ; If the char was 0, then just continue,
     rst 16                                              ; Otherwise call the ROM print routine.
     jr .loop                                            ; Then loop to get the next char.
+.exit:
+
+    nextreg $53, $0B                                    ; This restores the original paging configuration before LAYER 1,2 changed it.
+                                                        ; Now you could poke even column data directly to $6000 if you wanted to.
 
 Freeze:
     jr Freeze                                           ; Let's not return to BASIC, otherwise it will undo LAYER 1,2
