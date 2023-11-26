@@ -1,6 +1,8 @@
 # TimexHiResExample
 Simple examples for enabling Timex HiRes mode and `LAYER 1,2` on Spectrum Next from asm.
 
+Next-only examples would more typically be created as .NEX files or dot commands, but the former adds a layer of complexity to using the NextZXOS API, and the latter is more complex all round. Also, it's beneficial if the `PortFF.tap` example can be demonstrated to work equally well on standard Timex hardware and other emulators.
+
 ## PortFF
 
 This assembles to `PortFF.tap`, and runs in both SpecEmu, Next, and CSpect with SD image.
